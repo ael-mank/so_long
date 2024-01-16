@@ -1,0 +1,6 @@
+{
+	"files.associations": {
+		"keysymdef.h": "c",
+		"keysym.h": "c"
+	}
+}
