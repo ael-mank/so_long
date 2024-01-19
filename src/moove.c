@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:29:37 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/16 14:07:05 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:02:35 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	moove_right(t_mlx *mlx, int x, int y)
 	}
 	else
 	{
-		printf("WALL !!\n");
+		ft_printf("WALL !!\n");
 	}
 	return (x);
 }
@@ -41,7 +41,7 @@ int	moove_left(t_mlx *mlx, int x, int y)
 	}
 	else
 	{
-		printf("WALL !!\n");
+		ft_printf("WALL !!\n");
 	}
 	return (x);
 }
@@ -58,7 +58,7 @@ int moove_up(t_mlx *mlx, int x, int y)
 	}
 	else
 	{
-		printf("WALL !!\n");
+		ft_printf("WALL !!\n");
 	}
 	return (y);
 }
@@ -75,7 +75,7 @@ int moove_down(t_mlx *mlx, int x, int y)
 	}
 	else
 	{
-		printf("WALL !!\n");
+		ft_printf("WALL !!\n");
 	}
 	return (y);
 }

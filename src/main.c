@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:31:50 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/16 14:07:21 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/19 15:38:51 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	keys_handler(int key_code, t_mlx *mlx)
 
 	if (key_code == XK_Escape)
 	{
-		printf("LEAVE\n");
+		ft_printf("\033[1;32mGame Closed by User.\033[0m\n");
 		end_game(mlx);
 	}
 	else if (key_code == XK_Right)
@@ -31,7 +31,7 @@ int	keys_handler(int key_code, t_mlx *mlx)
 	else if (key_code == XK_Down)
 		y = moove_down(mlx, x, y);
 	else
-		printf("key pressed : [%d]\n", key_code);
+		ft_printf("key pressed : [%d]\n", key_code);
 	return (0);
 }
 
@@ -57,17 +57,29 @@ int	game_loop(t_mlx *mlx)
 	ft_border(mlx);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy, LENGHT
 		- (LENGHT - BPX), HEIGHT - 100);
+	mlx_do_key_autorepeaton(mlx->mlx_ptr);
 	mlx_key_hook(mlx->win_ptr, keys_handler, mlx);
+	mlx_hook(mlx->win_ptr, 17, 0, end_game, mlx);
 	mlx_loop_hook(mlx->win_ptr, game_loop, mlx);
 	mlx_loop(mlx->mlx_ptr);
 	return (0);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_mlx	mlx;
 
-	init_mlx(&mlx);
-	game_loop(&mlx);
-	return (0);
+	(void)argv;
+	if (argc != 2)
+	{
+		ft_printf("\033[0;31mError\n");
+		ft_printf("Usage: ./so_long [map.ber]\n\033[0m");
+		return (0);
+	}
+	else
+	{
+		init_mlx(&mlx);
+		game_loop(&mlx);
+		return (0);
+	}
 }
