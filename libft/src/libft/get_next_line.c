@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 20:05:27 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/19 12:39:12 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/19 19:22:50 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,23 +112,4 @@ char	*get_next_line(int fd)
 	stash = ft_collect_leftover(line);
 	ft_update_line(&line);
 	return (line);
-}
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	void	*res;
-	char	*temp;
-
-	if (size != 0 && count > (size_t)-1 / size)
-		return (NULL);
-	res = malloc(count * size);
-	if (!res)
-		return (NULL);
-	temp = (char *)res;
-	while (count-- > 0)
-	{
-		*temp = 0;
-		temp++;
-	}
-	return (res);
 }

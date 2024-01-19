@@ -6,7 +6,7 @@
 #    By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 10:45:06 by ael-mank          #+#    #+#              #
-#    Updated: 2024/01/19 12:41:56 by ael-mank         ###   ########.fr        #
+#    Updated: 2024/01/19 19:23:43 by ael-mank         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ MLX           = mlx_Linux
 SRC_DIR       = src/
 OBJ_DIR 	  = obj/
 CC            = cc
-CFLAGS        = -Wall -Werror -Wextra -I libft/include -I$(MLX_DIR) -I$(INCLUDE) 
+CFLAGS        = -Wall -Werror -Wextra -I libft/include -I$(MLX_DIR) -I$(INCLUDE) -g
 DEBUG_FLAGS   = -g
 RM            = rm -f
 
@@ -29,7 +29,7 @@ MAGENTA=\033[0;35m
 NC=\033[0m
 
 # Sources Push_Swap
-SRC_FILES = main moove end base
+SRC_FILES = main moove end base map_handling
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ_PS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
