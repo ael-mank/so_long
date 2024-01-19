@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:30:56 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/19 15:32:10 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/19 21:50:36 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 # define HEIGHT 300
 # define LENGHT 600
-# define BPX 50
+# define BPX 100
 
 typedef struct s_mlx
 {
@@ -32,11 +32,19 @@ typedef struct s_mlx
 	void	*background;
 	void	*border;
 	void	*woisy;
-	int		map[LENGHT][HEIGHT];
-
+	char	**map;
+	t_list	*lst_map;
+	int		map_fd;
+	int 	gw;
+	int 	gh;
+	int 	nc;
 }	t_mlx;
 
 	
+//Map handling
+
+int		ft_init_map(char **argv, t_mlx *mlx);
+
 //Ending/error handling
 
 int 	end_game(t_mlx *mlx);
@@ -51,6 +59,6 @@ int		moove_down(t_mlx *mlx, int x, int y);
 //Backfround/border
 
 void	ft_background(t_mlx *mlx);
-void	ft_border(t_mlx *mlx);
+void	draw_wall(t_mlx *mlx);
 
 #endif

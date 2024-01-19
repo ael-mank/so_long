@@ -3,5 +3,6 @@
 		"keysymdef.h": "c",
 		"keysym.h": "c",
 		"unistd.h": "c"
-	}
+	},
+	"liveServer.settings.port": 5501
 }
