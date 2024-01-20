@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:31:50 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/20 10:33:51 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/20 12:29:38 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,17 @@ int	init_player(t_mlx *mlx)
 	return (0);
 }
 
+int showmooves(t_mlx *mlx)
+{
+	char *mooves;
+
+	mooves = ft_itoa(mlx->mooves);
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, (mlx->gh * BPX) + BPX / 3, 0x00FFFFFF, "Mooves : ");
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 100, (mlx->gh * BPX) + BPX / 3, 0x00FFFFFF, mooves);
+	free(mooves);
+	return (0);
+}
+
 int	keys_handler(int key_code, t_mlx *mlx)
 {
 	static int	x = 0;
@@ -97,10 +108,12 @@ void	init_game(t_mlx *mlx, char **argv)
 			&d);
 	mlx->gw = -1;
 	mlx->gh = -1;
+	mlx->exitcode = 1;
 	mlx->lst_map = NULL;
+	mlx->mooves = 0;
 	ft_init_map(argv, mlx);
 	init_player(mlx);
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, (mlx->gw * BPX) - BPX, (mlx->gh * BPX), "So_Long v0.1");
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, (mlx->gw * BPX) - BPX, (mlx->gh * BPX) + (BPX / 2), "So_Long v0.1");
 }
 
 int	game_loop(t_mlx *mlx)
@@ -110,6 +123,7 @@ int	game_loop(t_mlx *mlx)
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy, mlx->spawn[0] * BPX, mlx->spawn[1] * BPX);
 	mlx_key_hook(mlx->win_ptr, keys_handler, mlx);
 	mlx_hook(mlx->win_ptr, 17, 0, end_game, mlx);
+	mlx_loop_hook(mlx->mlx_ptr, showmooves, mlx);
 	mlx_loop(mlx->mlx_ptr);
 	return (0);
 }

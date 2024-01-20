@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:30:56 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/20 10:43:35 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/20 12:17:47 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 # include <unistd.h>
 # include <string.h>
 
-# define HEIGHT 300
-# define LENGHT 600
-# define BPX 100
+// # define HEIGHT 300
+// # define LENGHT 600
+# define BPX 50
 
 typedef struct s_mlx
 {
@@ -39,6 +39,8 @@ typedef struct s_mlx
 	int 	gh;
 	int 	nc;	
 	int 	spawn[2];
+	int 	exitcode;
+	int 	mooves;
 }	t_mlx;
 
 	
