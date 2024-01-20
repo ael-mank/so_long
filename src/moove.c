@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:29:37 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/19 22:00:48 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/19 22:33:58 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	moove_right(t_mlx *mlx, int x, int y)
 {
-	if (mlx->map[x + 1][y] == '0')
+	if (mlx->map[y][x + 1] != '1')
 	{
 		mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
 		ft_background(mlx);
 		draw_wall(mlx);
-		x += BPX;
+		x += 1;
 		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy, x * BPX, y * BPX);
 	}
 	else
@@ -31,12 +31,12 @@ int	moove_right(t_mlx *mlx, int x, int y)
 
 int	moove_left(t_mlx *mlx, int x, int y)
 {
-	if (mlx->map[x - 1][y] == '0')
+	if (mlx->map[y][x - 1] != '1')
 	{
 		mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
 		ft_background(mlx);
 		draw_wall(mlx);
-		x -= BPX;
+		x -= 1;
 		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy, x* BPX, y* BPX);
 	}
 	else
@@ -48,12 +48,12 @@ int	moove_left(t_mlx *mlx, int x, int y)
 
 int moove_up(t_mlx *mlx, int x, int y)
 {
-	if (mlx->map[x][y - 1] == '0')
+	if (mlx->map[y - 1][x] != '1')
 	{
 		mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
 		ft_background(mlx);
 		draw_wall(mlx);
-		y -= BPX;
+		y -= 1;
 		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy, x* BPX, y* BPX);
 	}
 	else
@@ -65,13 +65,13 @@ int moove_up(t_mlx *mlx, int x, int y)
 
 int moove_down(t_mlx *mlx, int x, int y)
 {
-	if (mlx->map[x][y + 1] == '0')
+	if (mlx->map[y + 1][x] != '1')
 	{
 		mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
 		ft_background(mlx);
 		draw_wall(mlx);
-		y += BPX;
-		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy, x* BPX, y* BPX);
+		y += 1;
+		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy, x * BPX, y * BPX);
 	}
 	else
 	{
