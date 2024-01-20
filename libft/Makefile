@@ -6,7 +6,7 @@
 #    By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/02 19:23:02 by ael-mank          #+#    #+#              #
-#    Updated: 2024/01/19 12:39:39 by ael-mank         ###   ########.fr        #
+#    Updated: 2024/01/20 12:22:08 by ael-mank         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ OBJ_B		= $(addprefix $(OBJ_DIR_LIB), $(addsuffix .o, $(BONUS)))
 
 # Sources Printf
 
-SRC_PRINTF_FILES = ft_printf ft_printchars ft_printptr minilibft ft_checktype ft_flags ft_itoa ft_printhexa \
+SRC_PRINTF_FILES = ft_printf ft_printchars ft_printptr minilibft ft_checktype ft_flags ft_itoa_ptf ft_printhexa \
         ft_printnb ft_printunsigned ft_get_length ft_create_array ft_justify_integer \
         ft_str_handler ft_integer_handler ft_justify_hexa ft_justifyptr ft_justify_integer2
 
