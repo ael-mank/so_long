@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:30:56 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/19 21:50:36 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/20 10:43:35 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ typedef struct s_mlx
 	int		map_fd;
 	int 	gw;
 	int 	gh;
-	int 	nc;
+	int 	nc;	
+	int 	spawn[2];
 }	t_mlx;
 
 	
