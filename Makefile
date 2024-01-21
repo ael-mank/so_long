@@ -18,9 +18,11 @@ MLX           = mlx_Linux
 SRC_DIR       = src/
 OBJ_DIR 	  = obj/
 CC            = cc
-CFLAGS        = -Wall -Werror -Wextra -I libft/include -I$(MLX_DIR) -I$(INCLUDE)
+CFLAGS        = -Wall -Werror -Wextra -I libft/includei -I$(MLX_DIR) -I$(INCLUDE)
+CFLAGS        += -Llibft -L$(MLX_DIR) -lft -lX11 -lXext -l$(MLX)
 DEBUG_FLAGS   = -g
 RM            = rm -f
+MAKE := make
 
 GREEN=\033[0;32m
 YELLOW=\033[0;33m
@@ -49,7 +51,7 @@ so_long: $(OBJ_PS)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -lX11 -lXext -c $< -o $@
 	@echo "$(YELLOW)Compiled $< into $@ $(NC)"
 
 clean:
