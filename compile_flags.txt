@@ -1,0 +1,15 @@
+CFLAGS        = -Wall -Werror -Wextra -Ilibft/include -I$(MLX_DIR) -I$(INCLUDE)
+CFLAGS        += -Llibft -L$(MLX_DIR) -lft -lX11 -lXext -l$(MLX)
+
+-Wall
+-Werror
+-Wextra
+-Ilibft/include
+-Iminilibx-linux
+-Iinclude
+-Llibft
+-Lminilibx-linux
+-lft
+-lX11
+-lXext
+-lmlx_Linux
