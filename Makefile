@@ -6,7 +6,7 @@
 #    By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 10:45:06 by ael-mank          #+#    #+#              #
-#    Updated: 2024/01/20 12:29:22 by ael-mank         ###   ########.fr        #
+#    Updated: 2024/01/22 14:00:11 by ael-mank         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,7 @@ MLX           = mlx_Linux
 SRC_DIR       = src/
 OBJ_DIR 	  = obj/
 CC            = cc
-CFLAGS        = -Wall -Werror -Wextra -I libft/includei -I$(MLX_DIR) -I$(INCLUDE)
-CFLAGS        += -Llibft -L$(MLX_DIR) -lft -lX11 -lXext -l$(MLX)
+CFLAGS        = -Wall -Werror -Wextra -Ilibft/include -I$(MLX_DIR) -I$(INCLUDE) -O3
 DEBUG_FLAGS   = -g
 RM            = rm -f
 MAKE := make
@@ -31,7 +30,7 @@ MAGENTA=\033[0;35m
 NC=\033[0m
 
 # Sources Push_Swap
-SRC_FILES = main moove end base map_handling
+SRC_FILES = main moove end base map_handling map_handling2 draw collectibles
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ_PS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
@@ -51,7 +50,7 @@ so_long: $(OBJ_PS)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -lX11 -lXext -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "$(YELLOW)Compiled $< into $@ $(NC)"
 
 clean:
