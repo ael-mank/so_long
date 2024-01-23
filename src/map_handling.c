@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 12:42:20 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/20 12:10:58 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/22 13:26:35 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	open_map(char *path, t_mlx *mlx)
 	path_len = ft_strlen(path);
 	if (path_len < 4)
 		return (0);
-	if (ft_strncmp(&path[path_len - 4], ".ber", ft_strlen(&path[path_len - 4])) != 0)
+	if (ft_strncmp(&path[path_len - 4], ".ber", ft_strlen(&path[path_len
+					- 4])) != 0)
 		return (0);
 	mlx->map_fd = open(path, O_RDONLY);
 	if (mlx->map_fd < 0)
@@ -59,7 +60,7 @@ int	lst_to_map(t_mlx *mlx)
 	mlx->gh = ft_lstsize(mlx->lst_map);
 	if (mlx->gh < 3)
 		return (0);
-	mlx->map = ft_calloc(mlx->gh +1, sizeof(char *));
+	mlx->map = ft_calloc(mlx->gh + 1, sizeof(char *));
 	if (!mlx->map)
 		exit(EXIT_FAILURE);
 	lst = mlx->lst_map;
@@ -79,7 +80,7 @@ int	lst_to_map(t_mlx *mlx)
 }
 
 int	check_rect(t_mlx *mlx)
-{	
+{
 	int	i;
 
 	i = 0;
@@ -87,95 +88,12 @@ int	check_rect(t_mlx *mlx)
 	{
 		if (i > mlx->gh)
 			return (0);
-		if (i + 1 == mlx->gh && \
-		(int)ft_strlen(mlx->map[i]) == mlx->gw - 1)
+		if (i + 1 == mlx->gh && (int)ft_strlen(mlx->map[i]) == mlx->gw - 1)
 			return (1);
 		if ((int)ft_strlen(mlx->map[i]) != mlx->gw)
 			return (0);
 		i++;
 	}
-	return (1);
-}
-
-int	check_chars(t_mlx *mlx)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (mlx->map[i])
-	{
-		j = 0;
-		while (mlx->map[i][j])
-		{
-			if (
-				!(mlx->map[i][j] == '1' || mlx->map[i][j] == '0'
-				|| mlx->map[i][j] == 'C' || mlx->map[i][j] == 'M'
-				|| mlx->map[i][j] == 'P' || mlx->map[i][j] == 'E'
-				|| mlx->map[i][j] == '*'
-				|| (j == mlx->gw - 1 && mlx->map[i][j] == '\n'))
-			)
-				return (0);
-			if (j == mlx->gw -1 && mlx->map[i][j] != '\n' )
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}
-
-int	border_is_valid(t_mlx *mlx)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (mlx->map[i])
-	{
-		j = 0;
-		while (mlx->map[i][j] && i < mlx->gh &&
-		j < mlx->gw - 1)
-		{
-			if (i == 0 || i + 1 == mlx->gh)
-				if (mlx->map[i][j] != '1')
-					return (0);
-			if (j == 0 || j + 2 == mlx->gw)
-				if (mlx->map[i][j] != '1')
-					return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}
-
-int	required_chars(t_mlx *mlx)
-{
-	int		i;
-	int		j;
-	int		elements[3];
-
-	i = 0;
-	ft_memset(elements, 0, sizeof(elements));
-	while (mlx->map[i])
-	{
-		j = 0;
-		while (mlx->map[i][j])
-		{
-			if (mlx->map[i][j] == 'C')
-				elements[0]++;
-			else if (mlx->map[i][j] == 'P')
-				elements[1]++;
-			else if (mlx->map[i][j] == 'E')
-				elements[2]++;
-			j++;
-		}
-		i++;
-	}
-	if (elements[0] < 1 || elements[1] != 1 || elements[2] != 1)
-		return (0);
-	mlx->nc = elements[0];
 	return (1);
 }
 
