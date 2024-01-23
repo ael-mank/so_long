@@ -6,15 +6,16 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:37:58 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/22 16:08:01 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/23 12:06:41 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void countCollectibles(t_mlx *mlx) {
-	int i;
-	int j;
+void	countcollectibles(t_mlx *mlx)
+{
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < mlx->gh)
@@ -30,18 +31,18 @@ void countCollectibles(t_mlx *mlx) {
 	}
 }
 
-void set_colllectible_pos(t_mlx *mlx)
+void	set_colllectible_pos(t_mlx *mlx)
 {
-	int index;
-	int i;
-	int j;
-	
+	int	index;
+	int	i;
+	int	j;
+
 	index = 0;
 	i = 0;
-	while(i < mlx->gh)
+	while (i < mlx->gh)
 	{
 		j = 0;
-		while(j < mlx->gw)
+		while (j < mlx->gw)
 		{
 			if (mlx->map[i][j] == 'C')
 			{
@@ -55,24 +56,27 @@ void set_colllectible_pos(t_mlx *mlx)
 		i++;
 	}
 }
+
 int	init_collectibles(t_mlx *mlx)
 {
-	countCollectibles(mlx);
-	mlx->collectibles = (t_collectible *)malloc(sizeof(t_collectible) * mlx->collectibles_count);
+	countcollectibles(mlx);
+	mlx->collectibles = (t_collectible *)malloc(sizeof(t_collectible)
+			* mlx->collectibles_count);
 	if (mlx->collectibles == NULL)
 		return (0);
 	set_colllectible_pos(mlx);
 	return (1);
 }
 
-int update_collectible(t_mlx *mlx, int x, int y)
+int	update_collectible(t_mlx *mlx, int x, int y)
 {
-	int index;
+	int	index;
 
 	index = 0;
 	while (index < mlx->collectibles_count)
 	{
-		if (mlx->collectibles[index].x == x && mlx->collectibles[index].y == y && mlx->collectibles[index].collected == 0)
+		if (mlx->collectibles[index].x == x && mlx->collectibles[index].y == y
+			&& mlx->collectibles[index].collected == 0)
 		{
 			mlx->collectibles[index].collected = 1;
 			mlx->collected++;
@@ -80,5 +84,5 @@ int update_collectible(t_mlx *mlx, int x, int y)
 		}
 		index++;
 	}
-	return(-1);
+	return (-1);
 }
