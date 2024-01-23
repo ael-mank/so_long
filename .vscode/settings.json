@@ -2,7 +2,9 @@
 	"files.associations": {
 		"keysymdef.h": "c",
 		"keysym.h": "c",
-		"unistd.h": "c"
+		"unistd.h": "c",
+		"mlx_int.h": "c"
 	},
-	"liveServer.settings.port": 5501
+	"liveServer.settings.port": 5501,
+	"C_Cpp.errorSquiggles": "disabled"
 }
