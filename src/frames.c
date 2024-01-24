@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:43:49 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/23 13:26:42 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:02:43 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,25 +60,4 @@ void	createcircularframelist(t_list **head, void *mlx_ptr, char *filePaths[],
 		}
 		last->next = *head;
 	}
-}
-
-void	create_woisy(t_mlx *mlx)
-{
-	static char	*framefiles[] = {"assets/woisy.xpm", "assets/woisy2.xpm",
-		"assets/woisy3.xpm"};
-	int			numframes;
-
-	numframes = sizeof(framefiles) / sizeof(char *);
-	createcircularframelist(&mlx->woisy, mlx->mlx_ptr, framefiles, numframes);
-}
-
-void	create_gem(t_mlx *mlx)
-{
-	static char	*framefiles[] = {"assets/gemstart.xpm", "assets/gemlast3.xpm",
-		"assets/gemlast1.xpm", "assets/gemlast.xpm", "assets/gemlast1.xpm",
-		"assets/gemlast2.xpm", "assets/gemstart.xpm"};
-	int			numframes;
-
-	numframes = sizeof(framefiles) / sizeof(char *);
-	createcircularframelist(&mlx->collect, mlx->mlx_ptr, framefiles, numframes);
 }

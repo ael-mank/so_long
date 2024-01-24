@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:17:12 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/23 13:20:35 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:00:16 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,23 +47,36 @@ void	draw_collectibles(t_mlx *mlx)
 	}
 }
 
+int	put_exit(t_mlx *mlx)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < mlx->gh)
+	{
+		j = 0;
+		while (j < mlx->gw)
+		{
+			if (mlx->map[i][j] == 'E')
+			{
+				mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr,
+					mlx->exit->content, j * BPX, i * BPX);
+				return (1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
 void	hud(t_mlx *mlx)
 {
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->hud.content,
 		(mlx->gw * BPX) - (BPX * 3), 0);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->hudd.content, 0,
 		0);
-}
-
-int	check_score(t_mlx *mlx)
-{
-	if (mlx->collected == mlx->collectibles_count)
-	{
-		ft_printf("You won in %d mooves\n", mlx->mooves);
-		end_game(mlx);
-		return (1);
-	}
-	return (0);
 }
 
 int	showmooves(t_mlx *mlx)
@@ -76,6 +89,7 @@ int	showmooves(t_mlx *mlx)
 	timepassed = (double)(currenttime - mlx->lastFrameUpdate) / CLOCKS_PER_SEC;
 	if (timepassed >= 0.2)
 	{
+		check_score(mlx);
 		mlx->woisy = mlx->woisy->next;
 		mlx->collect = mlx->collect->next;
 		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy->content,

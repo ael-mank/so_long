@@ -6,7 +6,7 @@
 #    By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 10:45:06 by ael-mank          #+#    #+#              #
-#    Updated: 2024/01/23 14:17:42 by ael-mank         ###   ########.fr        #
+#    Updated: 2024/01/24 14:00:37 by ael-mank         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ MAGENTA=\033[0;35m
 NC=\033[0m
 
 # Sources Push_Swap
-SRC_FILES = main moove end base map_handling map_handling2 draw collectibles frames
+SRC_FILES = main moove end base map_handling map_handling2 draw collectibles frames creates flood_fill
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ_PS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
