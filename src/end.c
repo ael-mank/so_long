@@ -6,17 +6,20 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 10:14:33 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/24 14:23:25 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:21:48 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_error(t_mlx *mlx, char *msg)
+void	ft_error(t_mlx *mlx, char *msg, int i)
 {
 	ft_printf("\033[0;31mError\n");
 	ft_printf("%s\n\033[0m", msg);
-	mlx->exitcode = 0;
+	if (i == 0)
+		mlx->exitcode = 0;
+	else
+		mlx->exitcode = i;
 	end_game(mlx);
 }
 
@@ -74,10 +77,12 @@ int	end_game(t_mlx *mlx)
 	{
 		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 		free(mlx->collectibles);
+		free_mapi(mlx);
 	}
+	else if (mlx->exitcode == 2)
+		free_mapi(mlx);
 	mlx_destroy_display(mlx->mlx_ptr);
 	free(mlx->mlx_ptr);
-	free_mapi(mlx);
 	ft_lstclear(&mlx->lst_map, free);
 	exit(0);
 	return (0);

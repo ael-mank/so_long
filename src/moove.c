@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:29:37 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/24 11:06:27 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:14:22 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ int	keys_handler(int key_code, t_mlx *mlx)
 
 int	moove_right(t_mlx *mlx, int x, int y)
 {
-	if (mlx->map[y][x + 1] != '1' && (mlx->can_leave || mlx->map[y][x
-			+ 1] != 'E'))
+	if (mlx->map[y][x + 1] != '1')
 	{
 		mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
 		ft_background(mlx);
@@ -58,8 +57,7 @@ int	moove_right(t_mlx *mlx, int x, int y)
 
 int	moove_left(t_mlx *mlx, int x, int y)
 {
-	if (mlx->map[y][x - 1] != '1' && (mlx->can_leave || mlx->map[y][x
-			- 1] != 'E'))
+	if (mlx->map[y][x - 1] != '1')
 	{
 		mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
 		ft_background(mlx);
@@ -77,8 +75,7 @@ int	moove_left(t_mlx *mlx, int x, int y)
 
 int	moove_up(t_mlx *mlx, int x, int y)
 {
-	if (mlx->map[y - 1][x] != '1' && (mlx->can_leave || mlx->map[y
-			- 1][x] != 'E'))
+	if (mlx->map[y - 1][x] != '1')
 	{
 		mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
 		ft_background(mlx);
@@ -96,8 +93,7 @@ int	moove_up(t_mlx *mlx, int x, int y)
 
 int	moove_down(t_mlx *mlx, int x, int y)
 {
-	if (mlx->map[y + 1][x] != '1' && (mlx->can_leave || mlx->map[y
-			+ 1][x] != 'E'))
+	if (mlx->map[y + 1][x] != '1')
 	{
 		mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
 		ft_background(mlx);

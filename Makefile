@@ -6,7 +6,7 @@
 #    By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 10:45:06 by ael-mank          #+#    #+#              #
-#    Updated: 2024/01/24 14:00:37 by ael-mank         ###   ########.fr        #
+#    Updated: 2024/01/24 15:12:00 by ael-mank         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ MLX           = mlx_Linux
 SRC_DIR       = src/
 OBJ_DIR 	  = obj/
 CC            = cc
-CFLAGS        = -Wall -Werror -Wextra -Ilibft/include -I$(MLX_DIR) -I$(INCLUDE) -O3
+CFLAGS        = -Wall -Werror -Wextra -Ilibft/include -I$(MLX_DIR) -I$(INCLUDE)
 DEBUG_FLAGS   = -g
 RM            = rm -f
 MAKE := make

@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:30:56 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/24 14:46:13 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:18:45 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int					init_collectibles(t_mlx *mlx);
 // Ending/error handling
 
 int					end_game(t_mlx *mlx);
-void				ft_error(t_mlx *mlx, char *msg);
+void				ft_error(t_mlx *mlx, char *msg, int i);
 // Mooving
 
 int					keys_handler(int key_code, t_mlx *mlx);
