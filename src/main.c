@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:31:50 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/23 13:26:20 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/24 14:52:03 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	game_loop(t_mlx *mlx)
 	ft_background(mlx);
 	draw_wall(mlx);
 	draw_collectibles(mlx);
+	put_exit(mlx);
 	hud(mlx);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy->content,
 		mlx->ppos[0] * BPX, mlx->ppos[1] * BPX);
@@ -62,6 +63,7 @@ void	create_images(t_mlx *mlx)
 	mlx->mlx_ptr = mlx_init();
 	create_woisy(mlx);
 	create_gem(mlx);
+	create_exit(mlx);
 	mlx->background.content = mlx_xpm_file_to_image(mlx->mlx_ptr,
 			"assets/rock.xpm", &d, &d);
 	mlx->border.content = mlx_xpm_file_to_image(mlx->mlx_ptr,
@@ -76,6 +78,7 @@ void	init_game(t_mlx *mlx, char **argv)
 {
 	mlx->woisy = NULL;
 	mlx->collect = NULL;
+	mlx->exit = NULL;
 	create_images(mlx);
 	mlx->gw = -1;
 	mlx->gh = -1;
@@ -84,12 +87,13 @@ void	init_game(t_mlx *mlx, char **argv)
 	mlx->mooves = 0;
 	mlx->collectibles_count = 0;
 	mlx->collected = 0;
-	mlx->lastFrameUpdate = clock();
+	mlx->can_leave = 0;
+	mlx->lastframeupdate = clock();
 	ft_init_map(argv, mlx);
 	init_player(mlx);
 	init_collectibles(mlx);
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, (mlx->gw * BPX) - BPX, (mlx->gh
-				* BPX), "So_Long v0.4");
+				* BPX), "So_Long v0.9");
 }
 
 int	init_player(t_mlx *mlx)
