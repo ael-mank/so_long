@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:25:24 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/22 13:26:56 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:00:44 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,25 @@ int	required_chars(t_mlx *mlx)
 		return (0);
 	mlx->nc = elements[0];
 	return (1);
+}
+
+int	check_score(t_mlx *mlx)
+{
+	static int	animation_done = 0;
+	static int	frame = 0;
+
+	if (mlx->collected == mlx->collectibles_count && !animation_done)
+	{
+		if (frame < 9)
+		{
+			mlx->exit = mlx->exit->next;
+			put_exit(mlx);
+			frame++;
+		}
+		else
+			animation_done = 1;
+	}
+	else if (animation_done == 1)
+		mlx->can_leave = 1;
+	return (0);
 }

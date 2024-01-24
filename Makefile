@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 10:45:06 by ael-mank          #+#    #+#              #
-#    Updated: 2024/01/23 18:38:53 by ael-mank         ###   ########.fr        #
+#    Updated: 2024/01/24 23:11:30 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,7 @@ MLX           = mlx_Linux
 SRC_DIR       = src/
 OBJ_DIR 	  = obj/
 CC            = cc
-# CFLAGS        = -Wall -Werror -Wextra -Ilibft/include -I$(MLX_DIR) -I$(INCLUDE)
-CFLAGS        = -Wall -Werror -Wextra -Ilibft/include -I$(MLX_DIR) -I$(INCLUDE) -O3
-CFLAGS        += -Llibft -L$(MLX_DIR) -lft -lX11 -lXext -l$(MLX)
+CFLAGS        = -Wall -Werror -Wextra -Ilibft/include -I$(MLX_DIR) -I$(INCLUDE)
 DEBUG_FLAGS   = -g
 RM            = rm -f
 MAKE := make
@@ -32,7 +30,7 @@ MAGENTA=\033[0;35m
 NC=\033[0m
 
 # Sources Push_Swap
-SRC_FILES = main moove end base map_handling map_handling2 draw collectibles frames
+SRC_FILES = main moove end base map_handling map_handling2 draw collectibles frames creates flood_fill
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ_PS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
