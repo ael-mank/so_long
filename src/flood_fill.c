@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 13:54:30 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/24 14:37:29 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:29:46 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,5 @@ void	check_valid_path(t_mlx *mlx)
 		free(mlx->map_copy[i]);
 	free(mlx->map_copy);
 	if (mlx->c_check != 0 || mlx->e_check != 0)
-		ft_error(mlx, "ERROR: No valid path to all collectibles or exits.");
+		ft_error(mlx, "ERROR: No valid path to all collectibles or exits.", 2);
 }

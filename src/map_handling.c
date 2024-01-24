@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 12:42:20 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/24 14:00:13 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:42:36 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,19 +100,20 @@ int	check_rect(t_mlx *mlx)
 int	ft_init_map(char **argv, t_mlx *mlx)
 {
 	if (!open_map(argv[1], mlx))
-		ft_error(mlx, "Unable to open map file.");
+		ft_error(mlx, "Unable to open map file.", 0);
 	if (!fill_lst(mlx))
-		ft_error(mlx, "Invalid map file.");
+		ft_error(mlx, "Invalid map file.", 0);
 	if (!lst_to_map(mlx))
-		ft_error(mlx, "Height Or Width too small.");
+		ft_error(mlx, "Height Or Width too small.", 2);
 	if (!check_rect(mlx))
-		ft_error(mlx, "Map is not a rectangle.");
+		ft_error(mlx, "Map is not a rectangle.", 2);
 	if (!check_chars(mlx))
-		ft_error(mlx, "Invalid characters in map.");
+		ft_error(mlx, "Invalid characters in map.", 2);
 	if (!border_is_valid(mlx))
-		ft_error(mlx, "Map is not surrounded by walls.");
+		ft_error(mlx, "Map is not surrounded by walls.", 2);
 	if (!required_chars(mlx))
-		ft_error(mlx, "Map is missing required characters or has duplicates.");
+		ft_error(mlx, "Map is missing required characters or has duplicates.",
+			2);
 	check_valid_path(mlx);
 	return (1);
 }
