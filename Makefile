@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/22 22:28:45 by ael-mank          #+#    #+#              #
-#    Updated: 2024/01/22 22:28:49 by ael-mank         ###   ########.fr        #
+#    Created: 2024/01/03 10:45:06 by ael-mank          #+#    #+#              #
+#    Updated: 2024/01/23 18:38:53 by ael-mank         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ MAGENTA=\033[0;35m
 NC=\033[0m
 
 # Sources Push_Swap
-SRC_FILES = main moove end base map_handling map_handling2 draw collectibles
+SRC_FILES = main moove end base map_handling map_handling2 draw collectibles frames
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ_PS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
@@ -64,7 +64,7 @@ fclean: clean
 	@echo "$(MAGENTA)Cleaned libft ❎ $(NC)"
 	@cd $(MLX_DIR) && $(MAKE) clean > /dev/null
 	@echo "$(MAGENTA)Cleaned mlx ❎ $(NC)"
-	@$(RM) -f $(NAME) $(NAMECHECKER)
+	@$(RM) -f $(NAME)
 	@echo "$(MAGENTA)Cleaned $(NAME) ❎ $(NC)"
 
 re: fclean all

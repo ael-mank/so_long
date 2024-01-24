@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:29:37 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/22 16:15:36 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/23 11:52:28 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int	moove_right(t_mlx *mlx, int x, int y)
 		draw_collectibles(mlx);
 		hud(mlx);
 		x += 1;
-		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy, x * BPX,
-			y * BPX);
+		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy->content,
+			x * BPX, y * BPX);
 		mlx->mooves++;
 	}
 	return (x);
@@ -64,8 +64,8 @@ int	moove_left(t_mlx *mlx, int x, int y)
 		draw_collectibles(mlx);
 		hud(mlx);
 		x -= 1;
-		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy, x * BPX,
-			y * BPX);
+		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy->content,
+			x * BPX, y * BPX);
 		mlx->mooves++;
 	}
 	return (x);
@@ -81,8 +81,8 @@ int	moove_up(t_mlx *mlx, int x, int y)
 		draw_collectibles(mlx);
 		hud(mlx);
 		y -= 1;
-		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy, x * BPX,
-			y * BPX);
+		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy->content,
+			x * BPX, y * BPX);
 		mlx->mooves++;
 	}
 	return (y);
@@ -98,8 +98,8 @@ int	moove_down(t_mlx *mlx, int x, int y)
 		draw_collectibles(mlx);
 		hud(mlx);
 		y += 1;
-		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy, x * BPX,
-			y * BPX);
+		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy->content,
+			x * BPX, y * BPX);
 		mlx->mooves++;
 	}
 	return (y);

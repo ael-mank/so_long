@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:31:50 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/22 16:08:34 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/23 13:26:20 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	main(int argc, char **argv)
 	}
 }
 
-
 int	game_loop(t_mlx *mlx)
 {
 	update_collectible(mlx, mlx->ppos[0], mlx->ppos[1]);
@@ -44,7 +43,7 @@ int	game_loop(t_mlx *mlx)
 	draw_wall(mlx);
 	draw_collectibles(mlx);
 	hud(mlx);
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy,
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy->content,
 		mlx->ppos[0] * BPX, mlx->ppos[1] * BPX);
 	mlx_loop_hook(mlx->mlx_ptr, showmooves, mlx);
 	mlx_key_hook(mlx->win_ptr, keys_handler, mlx);
@@ -55,28 +54,28 @@ int	game_loop(t_mlx *mlx)
 
 void	create_images(t_mlx *mlx)
 {
-	int	d;
-	int	e;
-	
+	int			d;
+	int			e;
+
 	d = BPX;
 	e = d * 2;
 	mlx->mlx_ptr = mlx_init();
-	mlx->background = mlx_xpm_file_to_image(mlx->mlx_ptr, "assets/rock.xpm", &d,
+	create_woisy(mlx);
+	create_gem(mlx);
+	mlx->background.content = mlx_xpm_file_to_image(mlx->mlx_ptr,
+			"assets/rock.xpm", &d, &d);
+	mlx->border.content = mlx_xpm_file_to_image(mlx->mlx_ptr,
+			"assets/borders.xpm", &d, &d);
+	mlx->hud.content = mlx_xpm_file_to_image(mlx->mlx_ptr, "assets/hud.xpm", &e,
 			&d);
-	mlx->border = mlx_xpm_file_to_image(mlx->mlx_ptr, "assets/borders.xpm", &d,
-			&d);
-	mlx->woisy = mlx_xpm_file_to_image(mlx->mlx_ptr, "assets/woisy.xpm", &d,
-			&d);
-	mlx->hud = mlx_xpm_file_to_image(mlx->mlx_ptr, "assets/hud.xpm", &e,
-			&d);
-	mlx->collect = mlx_xpm_file_to_image(mlx->mlx_ptr, "assets/gem.xpm", &d,
-			&d);
-	mlx->hudd = mlx_xpm_file_to_image(mlx->mlx_ptr, "assets/hudd.xpm", &e,
-			&d);
+	mlx->hudd.content = mlx_xpm_file_to_image(mlx->mlx_ptr, "assets/hudd.xpm",
+			&e, &d);
 }
 
 void	init_game(t_mlx *mlx, char **argv)
 {
+	mlx->woisy = NULL;
+	mlx->collect = NULL;
 	create_images(mlx);
 	mlx->gw = -1;
 	mlx->gh = -1;
@@ -85,11 +84,12 @@ void	init_game(t_mlx *mlx, char **argv)
 	mlx->mooves = 0;
 	mlx->collectibles_count = 0;
 	mlx->collected = 0;
+	mlx->lastFrameUpdate = clock();
 	ft_init_map(argv, mlx);
 	init_player(mlx);
 	init_collectibles(mlx);
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, (mlx->gw * BPX) - BPX,
-			(mlx->gh * BPX), "So_Long v0.4");
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, (mlx->gw * BPX) - BPX, (mlx->gh
+				* BPX), "So_Long v0.4");
 }
 
 int	init_player(t_mlx *mlx)
