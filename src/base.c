@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 10:26:36 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/20 09:40:32 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/23 12:05:45 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	ft_background(t_mlx *mlx)
 	{
 		while (x < mlx->gw * BPX)
 		{
-			mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->background,
-				x, y);
+			mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr,
+				mlx->background.content, x, y);
 			x += BPX;
 		}
 		x = 0;
@@ -32,8 +32,12 @@ void	ft_background(t_mlx *mlx)
 	}
 }
 
-void	put_and_map(t_mlx *mlx, int x, int y)
+int	showscore(t_mlx *mlx)
 {
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->border, x, y);
-	mlx->map[x][y] = 1;
+	char	*score;
+
+	score = ft_itoa(mlx->collected);
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, BPX, 27, 0x00FFFFFF, score);
+	free(score);
+	return (0);
 }
