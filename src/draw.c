@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:17:12 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/24 11:00:16 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/24 14:48:21 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	showmooves(t_mlx *mlx)
 	double	timepassed;
 
 	currenttime = clock();
-	timepassed = (double)(currenttime - mlx->lastFrameUpdate) / CLOCKS_PER_SEC;
+	timepassed = (double)(currenttime - mlx->lastframeupdate) / CLOCKS_PER_SEC;
 	if (timepassed >= 0.2)
 	{
 		check_score(mlx);
@@ -95,7 +95,7 @@ int	showmooves(t_mlx *mlx)
 		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy->content,
 			mlx->ppos[0] * BPX, mlx->ppos[1] * BPX);
 		draw_collectibles(mlx);
-		mlx->lastFrameUpdate = currenttime;
+		mlx->lastframeupdate = currenttime;
 	}
 	mooves = ft_itoa(mlx->mooves);
 	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, (mlx->gw * BPX) - (BPX * 2), 27,
