@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:31:50 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/24 14:39:59 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/24 14:52:03 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,12 @@ void	init_game(t_mlx *mlx, char **argv)
 	mlx->collectibles_count = 0;
 	mlx->collected = 0;
 	mlx->can_leave = 0;
-	mlx->lastFrameUpdate = clock();
+	mlx->lastframeupdate = clock();
 	ft_init_map(argv, mlx);
 	init_player(mlx);
 	init_collectibles(mlx);
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, (mlx->gw * BPX) - BPX, (mlx->gh
-				* BPX), "So_Long v1");
+				* BPX), "So_Long v0.9");
 }
 
 int	init_player(t_mlx *mlx)
