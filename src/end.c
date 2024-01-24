@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 10:14:33 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/23 14:21:46 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/24 14:23:25 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,19 @@ void	destroyer(t_mlx *mlx)
 	mlx_destroy_image(mlx->mlx_ptr, mlx->hudd.content);
 	free_and_destroy_images(&mlx->woisy, mlx->mlx_ptr);
 	free_and_destroy_images(&mlx->collect, mlx->mlx_ptr);
+	free_and_destroy_images(&mlx->exit, mlx->mlx_ptr);
 }
 
 int	end_game(t_mlx *mlx)
 {
 	destroyer(mlx);
 	if (mlx->exitcode == 1)
+	{
 		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
+		free(mlx->collectibles);
+	}
 	mlx_destroy_display(mlx->mlx_ptr);
 	free(mlx->mlx_ptr);
-	free(mlx->collectibles);
 	free_mapi(mlx);
 	ft_lstclear(&mlx->lst_map, free);
 	exit(0);

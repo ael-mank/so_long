@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 12:42:20 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/23 12:04:06 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/24 14:00:13 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,6 @@ int	ft_init_map(char **argv, t_mlx *mlx)
 		ft_error(mlx, "Map is not surrounded by walls.");
 	if (!required_chars(mlx))
 		ft_error(mlx, "Map is missing required characters or has duplicates.");
+	check_valid_path(mlx);
 	return (1);
 }

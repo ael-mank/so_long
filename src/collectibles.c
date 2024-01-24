@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:37:58 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/23 12:06:41 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/24 14:06:41 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	set_colllectible_pos(t_mlx *mlx)
 
 int	init_collectibles(t_mlx *mlx)
 {
-	countcollectibles(mlx);
 	mlx->collectibles = (t_collectible *)malloc(sizeof(t_collectible)
 			* mlx->collectibles_count);
 	if (mlx->collectibles == NULL)
@@ -85,4 +84,16 @@ int	update_collectible(t_mlx *mlx, int x, int y)
 		index++;
 	}
 	return (-1);
+}
+
+int	check_exit(t_mlx *mlx, int x, int y)
+{
+	if (mlx->map[y][x] == 'E' && mlx->collected == mlx->collectibles_count
+		&& mlx->can_leave == 1)
+	{
+		ft_printf("You won in %d mooves\n", mlx->mooves);
+		end_game(mlx);
+		return (1);
+	}
+	return (0);
 }
