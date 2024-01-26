@@ -5,7 +5,7 @@ OBJ_DIR = ./obj/
 MLX_DIR = ./minilibx-linux/
 MLX     = mlx_Linux
 CFLAGS = -Wall -Wextra -Werror -Ilibft/include -I$(MLX_DIR) -Iinclude
-SRC_FILES = main moove end base map_handling map_handling2 draw collectibles frames creates flood_fill
+SRC_FILES = main moove end base map_handling map_handling2 draw collectibles frames creates flood_fill ennemy render_frame
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 NAME = so_long
@@ -26,7 +26,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@cd $(MLX_DIR) && ./configure > /dev/null 2>&1 
 	@echo "$(GREEN)Built MiniLibX ✅ $(NC)"
-	@cd ./libft && make > /dev/null && make bonus > /dev/null && make printf > /dev/null
+	@cd ./libft && $(MAKE) > /dev/null && $(MAKE) bonus > /dev/null && $(MAKE) printf > /dev/null
 	@echo "$(GREEN)Built Libft ✅ $(NC)"
 	@$(CC) -Llibft -L$(MLX_DIR) -o $@ $^ -lft -lmlx $(CFLAGS) -lX11 -lXext
 	@echo "$(BLUE)Compiled $(NAME) 🎮 $(NC)"

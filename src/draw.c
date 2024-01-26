@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:17:12 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/24 23:11:42 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/26 11:38:42 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,11 @@ int	showmooves(t_mlx *mlx)
 		check_score(mlx);
 		mlx->woisy = mlx->woisy->next;
 		mlx->collect = mlx->collect->next;
+		move_ennemies(mlx);
+		render_frame(mlx);
 		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy->content,
 			mlx->ppos[0] * BPX, mlx->ppos[1] * BPX);
-		draw_collectibles(mlx);
+		draw_ennemies(mlx);
 		mlx->lastframeupdate = currenttime;
 	}
 	mooves = ft_itoa(mlx->mooves);
