@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 12:42:20 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/26 13:42:47 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/26 16:00:57 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,10 @@ int	ft_init_map(char **argv, t_mlx *mlx)
 	if (!required_chars(mlx))
 		ft_error(mlx, "Map is missing required characters or has duplicates.",
 			2);
+	if (!max_heigt(mlx))
+		ft_error(mlx, "Map is too high.", 2);
+	if (!max_width(mlx))
+		ft_error(mlx, "Map is too wide.", 2);
 	check_valid_path(mlx);
 	return (1);
 }

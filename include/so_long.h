@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:30:56 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/26 11:18:00 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:59:40 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,7 @@ void	draw_ennemies(t_mlx *mlx);
 int	check_for_death(t_mlx *mlx, int x, int y);
 void	move_ennemies(t_mlx *mlx);
 void	render_frame(t_mlx *mlx);
+int	max_heigt(t_mlx *mlx);
+int	max_width(t_mlx *mlx);
 
 #endif
