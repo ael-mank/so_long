@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moove.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:29:37 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/25 01:59:19 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/26 11:18:24 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	keys_handler(int key_code, t_mlx *mlx)
 		mlx->ppos[1] = moove_down(mlx, x, y);
 	update_collectible(mlx, mlx->ppos[0], mlx->ppos[1]);
 	check_exit(mlx, mlx->ppos[0], mlx->ppos[1]);
+	check_for_death(mlx, mlx->ppos[0], mlx->ppos[1]);
+	draw_ennemies(mlx);
 	return (0);
 }
 
@@ -41,12 +43,7 @@ int	moove_right(t_mlx *mlx, int x, int y)
 {
 	if (mlx->map[y][x + 1] != '1')
 	{
-		mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
-		ft_background(mlx);
-		draw_wall(mlx);
-		draw_collectibles(mlx);
-		put_exit(mlx);
-		hud(mlx);
+		render_frame(mlx);
 		x += 1;
 		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy->content,
 			x * BPX, y * BPX);
@@ -59,12 +56,7 @@ int	moove_left(t_mlx *mlx, int x, int y)
 {
 	if (mlx->map[y][x - 1] != '1')
 	{
-		mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
-		ft_background(mlx);
-		draw_wall(mlx);
-		draw_collectibles(mlx);
-		put_exit(mlx);
-		hud(mlx);
+		render_frame(mlx);
 		x -= 1;
 		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy->content,
 			x * BPX, y * BPX);
@@ -77,12 +69,7 @@ int	moove_up(t_mlx *mlx, int x, int y)
 {
 	if (mlx->map[y - 1][x] != '1')
 	{
-		mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
-		ft_background(mlx);
-		draw_wall(mlx);
-		draw_collectibles(mlx);
-		put_exit(mlx);
-		hud(mlx);
+		render_frame(mlx);
 		y -= 1;
 		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy->content,
 			x * BPX, y * BPX);
@@ -95,12 +82,7 @@ int	moove_down(t_mlx *mlx, int x, int y)
 {
 	if (mlx->map[y + 1][x] != '1')
 	{
-		mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
-		ft_background(mlx);
-		draw_wall(mlx);
-		draw_collectibles(mlx);
-		put_exit(mlx);
-		hud(mlx);
+		render_frame(mlx);
 		y += 1;
 		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy->content,
 			x * BPX, y * BPX);

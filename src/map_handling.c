@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 12:42:20 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/24 15:42:36 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:42:47 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	ft_init_map(char **argv, t_mlx *mlx)
 	if (!fill_lst(mlx))
 		ft_error(mlx, "Invalid map file.", 0);
 	if (!lst_to_map(mlx))
-		ft_error(mlx, "Height Or Width too small.", 2);
+		ft_error(mlx, "Height Or Width too small.", 0);
 	if (!check_rect(mlx))
 		ft_error(mlx, "Map is not a rectangle.", 2);
 	if (!check_chars(mlx))

@@ -6,11 +6,12 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:31:50 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/24 14:52:03 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:45:03 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <sys/resource.h>
 
 void	init_game(t_mlx *mlx, char **argv);
 int		init_player(t_mlx *mlx);
@@ -38,10 +39,10 @@ int	main(int argc, char **argv)
 
 int	game_loop(t_mlx *mlx)
 {
-	update_collectible(mlx, mlx->ppos[0], mlx->ppos[1]);
 	ft_background(mlx);
 	draw_wall(mlx);
 	draw_collectibles(mlx);
+	draw_ennemies(mlx);
 	put_exit(mlx);
 	hud(mlx);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->woisy->content,
@@ -61,6 +62,8 @@ void	create_images(t_mlx *mlx)
 	d = BPX;
 	e = d * 2;
 	mlx->mlx_ptr = mlx_init();
+	if (mlx->mlx_ptr == NULL)
+		exit(EXIT_FAILURE);
 	create_woisy(mlx);
 	create_gem(mlx);
 	create_exit(mlx);
@@ -72,6 +75,8 @@ void	create_images(t_mlx *mlx)
 			&d);
 	mlx->hudd.content = mlx_xpm_file_to_image(mlx->mlx_ptr, "assets/hudd.xpm",
 			&e, &d);
+	mlx->ennemy.content = mlx_xpm_file_to_image(mlx->mlx_ptr,
+			"assets/ennemy.xpm", &d, &d);
 }
 
 void	init_game(t_mlx *mlx, char **argv)
@@ -86,12 +91,14 @@ void	init_game(t_mlx *mlx, char **argv)
 	mlx->lst_map = NULL;
 	mlx->mooves = 0;
 	mlx->collectibles_count = 0;
+	mlx->ennemies_count = 0;
 	mlx->collected = 0;
 	mlx->can_leave = 0;
 	mlx->lastframeupdate = clock();
 	ft_init_map(argv, mlx);
 	init_player(mlx);
 	init_collectibles(mlx);
+	init_ennemies(mlx);
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, (mlx->gw * BPX) - BPX, (mlx->gh
 				* BPX), "So_Long v0.9");
 }

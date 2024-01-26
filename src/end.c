@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   end.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 10:14:33 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/24 23:11:52 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/26 13:42:43 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,22 @@
 
 void	ft_error(t_mlx *mlx, char *msg, int i)
 {
-	ft_printf("\033[0;31mError\n");
-	ft_printf("%s\n\033[0m", msg);
-	if (i == 0)
-		mlx->exitcode = 0;
+	if (i <= 2)
+	{
+		ft_printf("\e[1;31mError\n");
+		ft_printf("%s\n\033[0m", msg);
+		if (i == 0)
+			mlx->exitcode = 0;
+		else
+			mlx->exitcode = i;
+		end_game(mlx);
+	}
 	else
+	{
+		ft_printf("\e[1;31mYou died!\n\033[0m");
 		mlx->exitcode = i;
-	end_game(mlx);
+		end_game(mlx);
+	}
 }
 
 void	free_mapi(t_mlx *mlx)
@@ -61,10 +70,16 @@ void	free_and_destroy_images(t_list **head, void *mlx_ptr)
 
 void	destroyer(t_mlx *mlx)
 {
-	mlx_destroy_image(mlx->mlx_ptr, mlx->background.content);
-	mlx_destroy_image(mlx->mlx_ptr, mlx->border.content);
-	mlx_destroy_image(mlx->mlx_ptr, mlx->hud.content);
-	mlx_destroy_image(mlx->mlx_ptr, mlx->hudd.content);
+	if (mlx->background.content != NULL)
+		mlx_destroy_image(mlx->mlx_ptr, mlx->background.content);
+	if (mlx->border.content != NULL)
+		mlx_destroy_image(mlx->mlx_ptr, mlx->border.content);
+	if (mlx->hud.content != NULL)
+		mlx_destroy_image(mlx->mlx_ptr, mlx->hud.content);
+	if (mlx->hudd.content != NULL)
+		mlx_destroy_image(mlx->mlx_ptr, mlx->hudd.content);
+	if (mlx->ennemy.content != NULL)
+		mlx_destroy_image(mlx->mlx_ptr, mlx->ennemy.content);
 	free_and_destroy_images(&mlx->woisy, mlx->mlx_ptr);
 	free_and_destroy_images(&mlx->collect, mlx->mlx_ptr);
 	free_and_destroy_images(&mlx->exit, mlx->mlx_ptr);
@@ -73,10 +88,11 @@ void	destroyer(t_mlx *mlx)
 int	end_game(t_mlx *mlx)
 {
 	destroyer(mlx);
-	if (mlx->exitcode == 1)
+	if (mlx->exitcode == 1 || mlx->exitcode == 4)
 	{
 		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 		free(mlx->collectibles);
+		free(mlx->ennemies);
 		free_mapi(mlx);
 	}
 	else if (mlx->exitcode == 2)

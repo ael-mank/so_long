@@ -6,7 +6,7 @@
 /*   By: ael-mank <ael-mank@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:30:56 by ael-mank          #+#    #+#             */
-/*   Updated: 2024/01/24 15:18:45 by ael-mank         ###   ########.fr       */
+/*   Updated: 2024/01/26 11:18:00 by ael-mank         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ typedef struct s_collectible
 	int				collected;
 }					t_collectible;
 
+typedef struct s_ennemy
+{
+	int				x;
+	int				y;
+}					t_ennemy;
+
 typedef struct s_img
 {
 	void			*img;
@@ -46,6 +52,7 @@ typedef struct s_mlx
 	t_list			*woisy;
 	t_list			hud;
 	t_list			hudd;
+	t_list			ennemy;
 	t_list			*exit;
 	t_list			*collect;
 	char			**map;
@@ -62,6 +69,8 @@ typedef struct s_mlx
 	int				collectibles_count;
 	int				can_leave;
 	t_collectible	*collectibles;
+	t_ennemy		*ennemies;
+	int				ennemies_count;
 	clock_t			lastframeupdate;
 	int				c_check;
 	int				e_check;
@@ -113,5 +122,10 @@ void				create_woisy(t_mlx *mlx);
 void				create_gem(t_mlx *mlx);
 int					put_exit(t_mlx *mlx);
 void				create_exit(t_mlx *mlx);
+int	init_ennemies(t_mlx *mlx);
+void	draw_ennemies(t_mlx *mlx);
+int	check_for_death(t_mlx *mlx, int x, int y);
+void	move_ennemies(t_mlx *mlx);
+void	render_frame(t_mlx *mlx);
 
 #endif
